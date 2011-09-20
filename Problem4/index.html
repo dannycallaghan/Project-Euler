@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<title>Project Euler - Problem 4</title>
+    	<link rel="stylesheet" href="../_css/css.css" />
+    </head>
+	<body>
+		<h1>Project Euler - Problem 4</h1>
+		<p>A palindromic number reads the same both ways. The largest palindrome made from the product of two 2-digit numbers is 9009 = 91  99.</p>
+		<p>Find the largest palindrome made from the product of two 3-digit numbers.</p>
+		<img src="../_images/loader.gif" alt="calculating" id="calculating" />
+		<form>
+			<input type="text" id="solution" />
+			<input type="submit" value="Get Answer" id="submit" />
+		</form>
+		<div id="notes"></div>
+		<script type="text/javascript" src="../_js/js.js"></script>
+		<script type="text/javascript">
+		getLargestPalindrome = function( rule ){
+			var maxNum = ( typeof rule === 'number' )? Math.pow(10, rule) - 1 : 99,
+			x = maxNum,
+			y = maxNum,
+			result,
+			highX,
+			isPalindromic = function(num){
+				return parseInt((num + '').split('').reverse().join(''), 10) === num ? true : false;
+			},
+			doTest = function(){
+				while( x-- ){
+					var total = x * y;
+					if( total < result ){
+						break;
+					}
+					if( isPalindromic(total) ){
+						result = total;
+						highX = x;
+						break;
+					}
+				}
+				if( y > highX ){
+					y = y - 1;
+					x = maxNum;
+					doTest();
+				}
+			};
+			doTest();
+			return result;
+		};
+		
+		init = function(){
+			var notes = 'Function takes one argument. An integer representing the target number (in this case 3).';
+			answer( getLargestPalindrome( 3 ), notes );
+		}
+		</script>
+	</body>
+</html>
