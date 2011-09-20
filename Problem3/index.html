@@ -16,7 +16,8 @@
 		<div id="notes"></div>
 		<script type="text/javascript" src="../_js/js.js"></script>
 		<script type="text/javascript">
-		getLargestPrimeFactor = function( target ){
+		// solution start
+		getLargestPrimeFactor = function ( target ) {
 			var foo = target,
 			tester = 2,
 			result = [];
@@ -33,6 +34,7 @@
 			}
 			return Math.max.apply( Math, result );
 		};
+		// solution end
 
 		init = function(){
 			var notes = 'Function takes one argument. An integer representing the target number (in this case 600851475143).';
