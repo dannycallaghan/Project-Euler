@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+    	<title>Project Euler - Problem 5</title>
+    	<link rel="stylesheet" href="../_css/css.css" />
+    </head>
+	<body>
+		<h1>Project Euler - Problem 5</h1>
+		<p>2520 is the smallest number that can be divided by each of the numbers from 1 to 10 without any remainder.</p>
+		<p>What is the smallest positive number that is evenly divisible by all of the numbers from 1 to 20?</p>
+		<img src="../_images/loader.gif" alt="calculating" id="calculating" />
+		<form>
+			<input type="text" id="solution" />
+			<input type="submit" value="Get Answer" id="submit" />
+		</form>
+		<div id="notes"></div>
+		<script type="text/javascript" src="../_js/js.js"></script>
+		<script type="text/javascript">
+		// solution start
+        getSmallest = function( a , b ){
+            var max = b,
+                min = Math.round( b / 2 ) + 1,
+                result = min,
+                greatestCommonFactor = function( a, b ){
+                    var min = a;
+                    while( min ){
+                        if( b % min === 0 && a % min === 0 ){
+                            break;
+                        }
+                        min--;
+                    }
+                    return min;
+                },
+                leastCommonMultiple = function( a , b ){
+                    return ( a * b ) / greatestCommonFactor( a, b );
+                }
+            for( var i = min, x = max; i <= x; i = i + 1 ) {
+                result = leastCommonMultiple( result, i );
+            }
+            return result;
+        }
+        // solution end
+        
+        init = function(){
+			var notes = 'Function takes two arguments. An integer representing the first number in the range (in this case 1), and an integer representing the range limit (in this case 20).';
+			answer( getSmallest( 1, 20 ), notes );
+		}
+		</script>
+	</body>
+</html>
